@@ -1,0 +1,66 @@
+	
+	body
+	{
+		background-color:#990000;
+		text-align:center;
+		background-color:#EAEAEA;
+		font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	}
+	
+	#content
+	{
+		text-align:left;
+		margin-left:auto;
+		margin-right:auto;
+		width:400px;
+		border:2px solid #AAA;
+		background-color:white;
+		margin-top:100px;
+		padding:15px;
+	}
+	
+	.pageTitle
+	{
+/*		float:left; */
+		font-weight:bold;
+		color:#666;
+		font-family:arial;
+	}
+	
+	.conversationContainer
+	{
+		border:1px solid #AAA;
+		width:380px;
+		height:250px;
+		text-align:left;
+		padding:5px;
+		display:block;
+		overflow:auto;
+		margin-bottom:5px;
+	}
+	.buttons
+	{
+	}
+	
+	#indicator
+	{
+		display:none;
+	}
+	
+	.elizaLabel
+	{
+		color:red;
+		font-weight:bold;
+	}
+	
+	.userLabel
+	{
+		color:blue;
+		font-weight:bold;
+	}
+	
+	#credits
+	{
+		font-size:x-small;
+		padding-top:5px;
+	}

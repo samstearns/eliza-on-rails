@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eliza3</title>
+  <%= stylesheet_link_tag :all %>
+	<%= stylesheet_link_tag "eliza", :media =>"all" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<%= yield %>
+
+<div id="credits">Based on Peter Norvig's <a href="http://www.norvig.com/paip/README.html">LISP implementation</a></div>
+
+</body>
+</html>
