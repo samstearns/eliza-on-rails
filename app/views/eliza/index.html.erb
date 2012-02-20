@@ -7,12 +7,8 @@
 	</div>
 	<div class="buttons">
 		<%= text_field_tag :newStatement, '' , :id => 'inputTextBox' %>
-		<%= submit_tag("Enter", :id => 'form-submit-button', :class => 'samform')  %> &nbsp; 
+		<%= submit_tag("Enter", :disable_with => "Please wait...", :id => 'form-submit-button', :class => 'samform')  %> &nbsp; 
 		<%= image_tag("indicator.gif", :id =>"processing-indicator", :style =>"display:none;", :height => 16, :width => 16) %>
 	</div>
   <% end %>
 </div>
-
-	<script type='text/javascript'>	
-  //  $('elizaform').observe('ajax:loading', loading_function());  
-	</script>

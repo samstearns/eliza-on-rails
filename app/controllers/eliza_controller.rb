@@ -5,15 +5,14 @@ class ElizaController < ApplicationController
 
   # Set path to load rules
   RULES_FILE = "#{RAILS_ROOT}/config/ElizaRules.yml"
-
-  # TODO: round corners
-  # onsubmit callbacks
-  # git
+  PRONOUNS_FILE = "#{RAILS_ROOT}/config/ElizaPronouns.yml"
 
   OPENING_STATEMENT =  "Hello there."	
+  DEFAULT_RESPONSE = "Go on."
 
 	def initialize
 		@eliza_rules = YAML::load( File.open( RULES_FILE ) )
+		@viewpoints = YAML::load( File.open( PRONOUNS_FILE ) )
     super
 	end
 
@@ -22,8 +21,6 @@ class ElizaController < ApplicationController
   end
 
   def index
-
-    print "hi there"
 
     if request.xhr?
   	  newInput = params[:newStatement]
@@ -68,7 +65,7 @@ class ElizaController < ApplicationController
 		tokens = input.downcase.chomp.split(/ /)
 		
     # default response
-		response = "Go on."
+		response = DEFAULT_RESPONSE
 		
 		# try all the rules
 		@eliza_rules.keys.each do |curr_key|
@@ -79,21 +76,21 @@ class ElizaController < ApplicationController
   		  
 				# get the list of responses for this rule
 				responses = @eliza_rules[current_rule]
-  		
+          		
 				# choose a response from the list of responses for the rule 
 				response = responses[rand(responses.length)]
-			
+
 				# pull out the interesting bit of the input - after the word we key in on.	
 				starting_point =  input.downcase.index(current_rule)
-	
+
 				tmp_sliced = input.slice(starting_point + current_rule.length + 1, input.length)
-				
+
 				if not(tmp_sliced.eql?(nil))
 					# change the viewpoint of the result
 					tmp_sliced = switch_viewpoint(tmp_sliced)
 			
 					# apply the transformation, from ?y to the rest of the text
-					response = response.sub(/REPLACEME/,  tmp_sliced)	
+					response = response.gsub(/REPLACEME/,  tmp_sliced)	
 				end
 		  end
 		end
@@ -125,21 +122,16 @@ def check_match(tokens, current_rule)
 	# TODO: improve to handle commas, periods next to swapped words
 	def  switch_viewpoint (words)
 		new_string = ""
-		
-		# TODO move to config file
-		viewpoints = {"i" => "you", "you" => "I", "me" => "are", "my" => "your"}
-		
+				
 		words.split.each do |word|
-			if(viewpoints[word.downcase])
-				word = viewpoints[word.downcase]
-			end	
-			
+			if(@viewpoints[word.downcase])
+				word = @viewpoints[word.downcase][0]
+			end				
 			new_string += word + " "		
 		end
 		
 		# trim trailing space
 		new_string.chop
 	end
-
 
 end
