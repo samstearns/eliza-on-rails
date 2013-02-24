@@ -4,8 +4,8 @@ require 'yaml'
 class ElizaController < ApplicationController
 
   # Set path to load rules
-  RULES_FILE = "#{RAILS_ROOT}/config/ElizaRules.yml"
-  PRONOUNS_FILE = "#{RAILS_ROOT}/config/ElizaPronouns.yml"
+  RULES_FILE = "#{Rails.root.to_s}/config/ElizaRules.yml"
+  PRONOUNS_FILE = "#{Rails.root.to_s}/config/ElizaPronouns.yml"
 
   OPENING_STATEMENT =  "Hello there."	
   DEFAULT_RESPONSE = "Go on."

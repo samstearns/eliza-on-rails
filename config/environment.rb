@@ -5,4 +5,4 @@ require File.expand_path('../application', __FILE__)
 Eliza3::Application.initialize!
 
 # Set path to load rules
-RULES_FILE = "#{RAILS_ROOT}/config/ElizaRules.yml"
+RULES_FILE = "#{Rails.root.to_s}/config/ElizaRules.yml"
