@@ -14,7 +14,7 @@ class ElizaController < ApplicationController
     @eliza_rules = YAML::load( File.open( RULES_FILE ) )
     @viewpoints = YAML::load( File.open( PRONOUNS_FILE ) )
     super
-	end
+  end
 
   def unknown_request
     redirect_to(:action => "index")
@@ -38,61 +38,57 @@ class ElizaController < ApplicationController
   private
 
   def reset
-  	 @conversation = OPENING_STATEMENT
+    @conversation = OPENING_STATEMENT
   end
 
   def user_statement(text)
-  	if text.eql?(nil)
-  		return "" 
-  	end
-  	return text	
+    if text.eql?(nil)
+      return "" 
+    end
+    return text	
   end
 
   def eliza_statement(text)
     if text.eql?(nil)
-	    return "" 
-	  end
+      return "" 
+    end
     
-	  return response = use_eliza_rules(text)
+    return response = use_eliza_rules(text)
   end
 
-	# uses global array of rules
-	def use_eliza_rules(input)
-
-		# process the input into an array of words
-		# avoid matching on fragments, like "no" of "if"
-		tokens = input.downcase.chomp.split(/ /)
-		
-    # default response
-		response = DEFAULT_RESPONSE
-		
-		# try all the rules
-		@eliza_rules.keys.each do |curr_key|
-
-			current_rule = curr_key.to_s
-			
-  		if check_match(tokens, current_rule)
-  		  
-				# get the list of responses for this rule
-				responses = @eliza_rules[current_rule]
-          		
-				# choose a response from the list of responses for the rule 
-				response = responses[rand(responses.length)]
-
-				# pull out the interesting bit of the input - after the word we key in on.	
-				starting_point =  input.downcase.index(current_rule)
-
-				tmp_sliced = input.slice(starting_point + current_rule.length + 1, input.length)
-
-				if not(tmp_sliced.eql?(nil))
-					# change the viewpoint of the result
-					tmp_sliced = switch_viewpoint(tmp_sliced)
-			
-					# apply the transformation, from ?y to the rest of the text
-					response = response.gsub(/REPLACEME/,  tmp_sliced)	
-				end
-		  end
-		end
+# uses global array of rules
+def use_eliza_rules(input)
+  # process the input into an array of words
+  # avoid matching on fragments, like "no" of "if"
+  tokens = input.downcase.chomp.split(/ /)
+  
+  # default response
+  response = DEFAULT_RESPONSE
+  
+  # try all the rules
+  @eliza_rules.keys.each do |curr_key|
+    current_rule = curr_key.to_s
+    
+    if check_match(tokens, current_rule)
+      # get the list of responses for this rule
+      responses = @eliza_rules[current_rule]
+      
+      # choose a response from the list of responses for the rule 
+      response = responses[rand(responses.length)]
+      
+      # pull out the interesting bit of the input - after the word we key in on.	
+      starting_point =  input.downcase.index(current_rule)
+      tmp_sliced = input.slice(starting_point + current_rule.length + 1, input.length)
+      
+      if not(tmp_sliced.eql?(nil))
+        # change the viewpoint of the result
+        tmp_sliced = switch_viewpoint(tmp_sliced)
+        
+        # apply the transformation, from ?y to the rest of the text
+        response = response.gsub(/REPLACEME/,  tmp_sliced)
+      end
+    end
+end
 		
 	  response
 	end
