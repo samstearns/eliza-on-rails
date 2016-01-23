@@ -10,22 +10,21 @@ class ElizaController < ApplicationController
   OPENING_STATEMENT =  "Hello there."	
   DEFAULT_RESPONSE = "Go on."
 
-	def initialize
-		@eliza_rules = YAML::load( File.open( RULES_FILE ) )
-		@viewpoints = YAML::load( File.open( PRONOUNS_FILE ) )
+  def initialize
+    @eliza_rules = YAML::load( File.open( RULES_FILE ) )
+    @viewpoints = YAML::load( File.open( PRONOUNS_FILE ) )
     super
 	end
 
   def unknown_request
-  	redirect_to(:action => "index")
+    redirect_to(:action => "index")
   end
 
   def index
-
     if request.xhr?
-  	  newInput = params[:newStatement]
+      newInput = params[:newStatement]
       @userStatement = user_statement(newInput)
-  	  @elizaResponse = eliza_statement(newInput)
+      @elizaResponse = eliza_statement(newInput)
     else
       reset
     end
@@ -61,7 +60,7 @@ class ElizaController < ApplicationController
 	def use_eliza_rules(input)
 
 		# process the input into an array of words
-		# want to avoid matching on fragments, like "no" of "if"
+		# avoid matching on fragments, like "no" of "if"
 		tokens = input.downcase.chomp.split(/ /)
 		
     # default response
