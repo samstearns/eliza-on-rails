@@ -21,6 +21,7 @@ class ElizaController < ApplicationController
   end
 
   def index
+    @pagename = "Eliza on Rails"
     if request.xhr?
       newInput = params[:newStatement]
       @userStatement = user_statement(newInput)
