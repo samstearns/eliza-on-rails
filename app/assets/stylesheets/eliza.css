@@ -1,4 +1,3 @@
-	
 	body
 	{
 		background-color:#990000;
@@ -6,7 +5,7 @@
 		background-color:#EAEAEA;
 		font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
 	}
-	
+
 	#content
 	{
 		text-align:left;
@@ -18,7 +17,7 @@
 		margin-top:100px;
 		padding:15px;
 	}
-	
+
 	.pageTitle
 	{
 /*		float:left; */
@@ -26,7 +25,7 @@
 		color:#666;
 		font-family:arial;
 	}
-	
+
 	.conversationContainer
 	{
 		border:1px solid #AAA;
@@ -41,24 +40,24 @@
 	.buttons
 	{
 	}
-	
+
 	#indicator
 	{
 		display:none;
 	}
-	
+
 	.elizaLabel
 	{
 		color:red;
 		font-weight:bold;
 	}
-	
+
 	.userLabel
 	{
 		color:blue;
 		font-weight:bold;
 	}
-	
+
 	#credits
 	{
 		font-size:x-small;

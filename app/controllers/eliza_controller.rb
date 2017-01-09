@@ -22,6 +22,7 @@ class ElizaController < ApplicationController
 
   def index
     @pagename = "Eliza on Rails"
+    
     if request.xhr?
       newInput = params[:newStatement]
       @userStatement = user_statement(newInput)
@@ -29,10 +30,10 @@ class ElizaController < ApplicationController
     else
       reset
     end
-
+    
     respond_to do |format|
       format.html
-      format.js 
+      format.js
     end
   end
 

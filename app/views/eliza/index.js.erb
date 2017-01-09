@@ -1,15 +1,12 @@
 // Insert the partial at the bottom of the div list
-$('theConversation').insert( { bottom: "<%= raw(patient_response(@userStatement)) %>" } ); 
-$('theConversation').insert( { bottom: "<%= raw(eliza_response(@elizaResponse)) %>" } ); 
+$("#theConversation").append("<%= raw(patient_response(@userStatement)) %>");
+$("#theConversation").append("<%= raw(eliza_response(@elizaResponse)) %>");
 
-// Element.hide('processing-indicator');
+//Element.hide('processing-indicator');
 $('form-submit-button').disabled = false;	
-inputText = $('inputTextBox');
-inputText.value = '';
-inputText.focus();
+$("#inputTextBox").val = '';
+//inputText.val = "";
+//inputText.focus();
 
 // if set to value greater than it can be scrolled, then set to the maximum
 $('theConversation').scrollTop = 10000000;
-
-
-
