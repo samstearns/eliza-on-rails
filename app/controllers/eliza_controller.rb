@@ -115,7 +115,7 @@ class ElizaController < ApplicationController
     return false
   end
 
-  #	"Change I to you and vice versa, and so on."
+  # Change I to you and vice versa, and so on."
   # TODO: improve to handle commas, periods next to swapped words
   def switch_viewpoint (words)
     new_string = ""
