@@ -3,10 +3,9 @@ $("#theConversation").append("<%= raw(patient_response(@userStatement)) %>");
 $("#theConversation").append("<%= raw(eliza_response(@elizaResponse)) %>");
 
 //Element.hide('processing-indicator');
-$('form-submit-button').disabled = false;	
-$("#inputTextBox").val = '';
-//inputText.val = "";
-//inputText.focus();
+$('#form-submit-button').prop("disabled", false);	
+$("#inputTextBox").val('');
+$("#inputTextBox").focus();
 
 // if set to value greater than it can be scrolled, then set to the maximum
-$('theConversation').scrollTop = 10000000;
+$('#theConversation').scrollTop(10000000);
